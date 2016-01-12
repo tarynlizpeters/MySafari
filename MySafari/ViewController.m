@@ -41,7 +41,10 @@
 }
 
 - (IBAction)onBackButtonPressed:(UIButton *)sender {
-    -(void)goBack;
+    [self.WebView goBack];
+}
+- (IBAction)onForwardButtonPressed:(UIButton *)sender {
+    [self.WebView goForward];
     
 }
 
