@@ -12,10 +12,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *TextField;
 
 @property (weak, nonatomic) IBOutlet UIWebView *WebView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *Spinner;
 
 @end
 
 @implementation ViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,6 +31,19 @@
     return YES;
 }
 
--webvie
+-(void)webViewDidStartLoad:(UIWebView *)webView {
+    [self.Spinner startAnimating];
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self.Spinner stopAnimating];
+    
+}
+
+- (IBAction)onBackButtonPressed:(UIButton *)sender {
+    -(void)goBack;
+    
+}
+
 
 @end
