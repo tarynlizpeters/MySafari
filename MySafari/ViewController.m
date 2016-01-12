@@ -24,8 +24,11 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     NSURL *url = [NSURL URLWithString:textField.text];
-    Nsurl
+    NSURLRequest *destination = [NSURLRequest requestWithURL:url];
+    [self.WebView loadRequest:destination];
+    return YES;
 }
-}
+
+-webvie
 
 @end
