@@ -11,8 +11,10 @@
 @interface ViewController () <UIWebViewDelegate, UITextFieldDelegate>;
 @property (weak, nonatomic) IBOutlet UITextField *TextField;
 
-@property (weak, nonatomic) IBOutlet UIWebView *WebView;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *Spinner;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+
 
 @end
 
@@ -37,7 +39,7 @@
 
     NSURL *url = [NSURL URLWithString:textField.text];
     NSURLRequest *destination = [NSURLRequest requestWithURL:url];
-    [self.WebView loadRequest:destination];
+    [self.webView loadRequest:destination];
     return YES;
 }
 
@@ -47,23 +49,47 @@
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
     [self.Spinner stopAnimating];
+    
+    if ([webView canGoBack]){
+        [self.backButton setEnabled:YES];
+    }
+        else{
+            [self.backButton setEnabled:NO];
+    
 }
 
+}
 - (IBAction)onBackButtonPressed:(UIButton *)sender {
-    [self.WebView goBack];
+    [self.webView goBack];
     
 }
 - (IBAction)onForwardButtonPressed:(UIButton *)sender {
-    [self.WebView goForward];
+    [self.webView goForward];
     
 }
 
 - (IBAction)onStopLoadingButtonPressed:(UIButton *)sender {
-    [self.WebView stopLoading];
+    [self.webView stopLoading];
 }
 
 - (IBAction)onReloadButtonPressed:(UIButton *)sender {
-    [self.WebView reload];
+    [self.webView reload];
 }
+
+- (IBAction)onAddButtonPressed:(UIButton *)sender {
+    UIAlertController *comingSoonButton = [UIAlertController alertControllerWithTitle:@"Coming Soon!" message:@"New Stuff!" preferredStyle:
+                                           UIAlertControllerStyleAlert];
+    UIAlertAction *neat = [UIAlertAction actionWithTitle:@"Neato!" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        nil;
+    }];
+    [self presentViewController:comingSoonButton animated:YES completion:^{
+        nil;
+    }];
+    [comingSoonButton addAction:neat];
+
+        
+   
+}
+
 
 @end
